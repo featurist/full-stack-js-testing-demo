@@ -6,16 +6,15 @@ var app = express();
 var todos = [
   {id: 1, title: 'buy beer'},
   {id: 2, title: 'call Dave'},
-  {id: 3, title: 'drink beer'},
+  {id: 3, title: 'watch tv'},
 ]
 
-app.get('/todos', (req, res) => {
-  res.send(todos);
+app.get('/api/todos', (req, res) => {
+  setTimeout(() => res.send(todos), 1000);
 });
 
 app.get('/bundle.js', babelify('browser.js', null, {
-  presets: ['react', 'es2015'],
-  plugins: ['transform-regenerator']
+  presets: ['react', 'es2015']
 }));
 
 app.get('*', (req, res) => {

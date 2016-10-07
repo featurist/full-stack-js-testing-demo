@@ -9,15 +9,15 @@ const routes = {
 };
 router.start();
 
-export default class App {
-  constructor() {
-    this.todos = [];
-  }
+function navigateTo(path) {
+  window.history.pushState(null, path, '/' + path);
+}
 
-  fetchTODOs() {
-    return httpism.get('/todos').then(res => {
+export default class App {
+
+  loadTODOs() {
+    return httpism.get('/api/todos').then(res => {
       this.todos = res.body;
-      window.history.pushState(null, 'todos', '/todos');
     });
   }
 
@@ -25,16 +25,16 @@ export default class App {
     return <main>
       {
         routes.home(() => {
-          return <button onclick={ () => this.fetchTODOs() }>Fetch me TODOs</button>
+          return <button onclick={ () => navigateTo('todos') }>Fetch me TODOs</button>
         })
       }
       {
-        routes.todos(() => {
-          return <ul>
-            {
-              this.todos.map(t => <li>{ t.title }</li>)
-            }
-          </ul>
+        routes.todos({ onarrival: this.loadTODOs.bind(this) }, () => {
+          return this.todos
+            ?
+              <ul>{ this.todos.map(t => <li>{ t.title }</li>) }</ul>
+            :
+              <div>Loading...</div>
         })
       }
     </main>
