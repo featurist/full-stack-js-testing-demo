@@ -1,7 +1,7 @@
 /** @jsx plastiq.jsx */
 import plastiq from 'plastiq'
 import router from 'plastiq-router'
-import httpism from 'httpism'
+import Api from './api';
 
 const routes = {
   home: router.route('/'),
@@ -9,23 +9,24 @@ const routes = {
 };
 router.start();
 
-function navigateTo(path) {
-  window.history.pushState(null, path, '/' + path);
+function navigateTo(route) {
+  route().push();
 }
 
 export default class App {
+  constructor(api = Api) {
+    this.api = api;
+  }
 
-  loadTODOs() {
-    return httpism.get('/api/todos').then(res => {
-      this.todos = res.body;
-    });
+  async loadTODOs() {
+    this.todos = await this.api.loadTODOs();
   }
 
   render() {
     return <main>
       {
         routes.home(() => {
-          return <button onclick={ () => navigateTo('todos') }>Fetch me TODOs</button>
+          return <button onclick={ () => navigateTo(routes.todos) }>Fetch me TODOs</button>
         })
       }
       {

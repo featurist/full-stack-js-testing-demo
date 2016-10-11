@@ -1,10 +1,14 @@
 {
   "scripts": {
-    "start": "node ./app.js"
+    "start": "babel-node lib/app.js",
+    "dev": "nodemon --exec babel-node lib/app.js"
   },
   "dependencies": {
+    "babel-cli": "^6.16.0",
+    "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-react": "^6.16.0",
+    "babel-runtime": "^6.11.6",
     "babelify": "^7.3.0",
     "browserify": "^13.1.0",
     "express": "^4.14.0",
@@ -12,5 +16,17 @@
     "httpism": "^2.4.2",
     "plastiq": "^1.33.0",
     "plastiq-router": "^2.18.0"
+  },
+  "devDependencies": {
+    "browser-monkey": "^1.29.2",
+    "browserify": "^13.1.0",
+    "chai": "^3.5.0",
+    "karma": "^1.3.0",
+    "karma-browserify": "^5.1.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-mocha": "^1.2.0",
+    "mocha": "^3.1.2",
+    "nodemon": "^1.11.0",
+    "watchify": "^3.7.0"
   }
 }
