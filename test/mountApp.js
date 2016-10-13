@@ -19,6 +19,7 @@ function createTestDiv() {
 function useHashRoutes() {
   router.stop();
   router.start({history: router.hash});
+  window.location.hash = '';
 }
 
 export default function(app) {

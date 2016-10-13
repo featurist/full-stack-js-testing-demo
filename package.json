@@ -1,7 +1,9 @@
 {
   "scripts": {
     "start": "babel-node lib/app.js",
-    "dev": "nodemon --exec babel-node lib/app.js"
+    "dev": "nodemon --exec babel-node lib/app.js",
+    "test-karma": "karma start --single-run",
+    "test-electron": "electron-mocha --renderer **/*Spec.js"
   },
   "dependencies": {
     "babel-cli": "^6.16.0",
@@ -25,6 +27,8 @@
     "karma-browserify": "^5.1.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-mocha": "^1.2.0",
+    "electron-mocha": "^3.1.1",
+    "electron-prebuilt-compile": "^1.4.3",
     "mocha": "^3.1.2",
     "nodemon": "^1.11.0",
     "watchify": "^3.7.0"
