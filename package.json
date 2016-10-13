@@ -23,14 +23,23 @@
     "browser-monkey": "^1.29.2",
     "browserify": "^13.1.0",
     "chai": "^3.5.0",
+    "electron-mocha": "^3.1.1",
+    "electron-prebuilt-compile": "^1.4.3",
     "karma": "^1.3.0",
     "karma-browserify": "^5.1.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-mocha": "^1.2.0",
-    "electron-mocha": "^3.1.1",
-    "electron-prebuilt-compile": "^1.4.3",
     "mocha": "^3.1.2",
     "nodemon": "^1.11.0",
     "watchify": "^3.7.0"
-  }
+  },
+  "name": "bm-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "url": "git@github.com:artemave/browser-monkey-example.git",
+    "type": "git"
+  },
+  "author": "artemave <artemave@gmail.com>",
+  "license": "MIT"
 }
