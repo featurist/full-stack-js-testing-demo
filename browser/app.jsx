@@ -1,21 +1,21 @@
 /** @jsx plastiq.jsx */
-import plastiq from 'plastiq'
-import router from 'plastiq-router'
+import plastiq from 'plastiq';
+import router from 'plastiq-router';
 import Api from './api';
-
-const routes = {
-  home: router.route('/'),
-  todos: router.route('/todos')
-};
-router.start();
 
 function navigateTo(route) {
   route().push();
 }
 
 export default class App {
-  constructor(api = Api) {
-    this.api = api;
+  constructor({api, routerOptions} = {}) {
+    this.api = api || Api;
+
+    this.routes = {
+      home: router.route('/'),
+      todos: router.route('/todos')
+    };
+    router.start(routerOptions);
   }
 
   async loadTODOs() {
@@ -25,12 +25,12 @@ export default class App {
   render() {
     return <main>
       {
-        routes.home(() => {
-          return <button onclick={ () => navigateTo(routes.todos) }>Fetch me TODOs</button>
+        this.routes.home(() => {
+          return <button onclick={ () => navigateTo(this.routes.todos) }>Fetch me TODOs</button>
         })
       }
       {
-        routes.todos({ onarrival: this.loadTODOs.bind(this) }, () => {
+        this.routes.todos({ onarrival: this.loadTODOs.bind(this) }, () => {
           return this.todos
             ?
               <ul>{ this.todos.map(t => <li>{ t.title }</li>) }</ul>

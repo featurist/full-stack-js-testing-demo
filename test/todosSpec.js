@@ -1,7 +1,9 @@
 import browser from 'browser-monkey';
+import router from 'plastiq-router';
 import { expect } from 'chai';
 import mountApp from './mountApp';
 import App from '../browser/app';
+import fakeApi from './fakeApi';
 
 describe('todos app', () => {
   var page = browser.component({
@@ -22,16 +24,12 @@ describe('todos app', () => {
   });
 
   beforeEach(() => {
-    var fakeApi = {};
-    fakeApi.loadTODOs = () => {
-      return new Promise(function(resolve) {
-        setTimeout(() => {
-          resolve([{title: 'one'}, {title: 'two'}]);
-        }, 50);
-      });
-    }
+    window.location.hash = '';
 
-    mountApp(new App(fakeApi));
+    mountApp(new App({
+      api: fakeApi,
+      routerOptions: {history: router.hash},
+    }));
   });
 
   it('fetches todos', async () => {
