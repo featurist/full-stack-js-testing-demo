@@ -12,7 +12,7 @@ describe('todos app', () => {
     },
 
     observeLoadingBar: function() {
-      return this.find('div', {text: 'Loading...'});
+      return this.find('.loading', {text: 'Loading...'}).shouldExist();
     },
 
     expectTODOs: async function(...expectedTodos) {
@@ -24,17 +24,33 @@ describe('todos app', () => {
   });
 
   beforeEach(() => {
+    router.start({history: router.hash});
     window.location.hash = '';
 
     mountApp(new App({
       api: fakeApi,
-      routerOptions: {history: router.hash},
+      router: router
     }));
   });
 
-  it('fetches todos', async () => {
+  afterEach(() => {
+    router.clear();
+  });
+
+  it('allows user to fetch todos', async () => {
     await page.fetchTODOs();
     await page.observeLoadingBar();
     await page.expectTODOs('one', 'two');
+  });
+
+  context('when user lands on "/todos"', () => {
+    beforeEach(() => {
+      window.location.hash = 'todos';
+    });
+
+    it('fetches todos automatically', async () => {
+      await page.observeLoadingBar();
+      await page.expectTODOs('one', 'two');
+    });
   });
 });

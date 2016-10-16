@@ -1,6 +1,5 @@
 /** @jsx plastiq.jsx */
 import plastiq from 'plastiq';
-import router from 'plastiq-router';
 import Api from './api';
 
 function navigateTo(route) {
@@ -8,14 +7,14 @@ function navigateTo(route) {
 }
 
 export default class App {
-  constructor({api, routerOptions} = {}) {
+  constructor({api, router}) {
     this.api = api || Api;
+    this.router = router;
 
     this.routes = {
-      home: router.route('/'),
-      todos: router.route('/todos')
+      home: this.router.route('/'),
+      todos: this.router.route('/todos')
     };
-    router.start(routerOptions);
   }
 
   async loadTODOs() {
@@ -30,12 +29,12 @@ export default class App {
         })
       }
       {
-        this.routes.todos({ onarrival: this.loadTODOs.bind(this) }, () => {
+        this.routes.todos({ onarrival: () => this.loadTODOs() }, () => {
           return this.todos
             ?
               <ul>{ this.todos.map(t => <li>{ t.title }</li>) }</ul>
             :
-              <div>Loading...</div>
+              <div class="loading">Loading...</div>
         })
       }
     </main>
