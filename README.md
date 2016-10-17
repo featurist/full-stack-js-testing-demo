@@ -1,9 +1,14 @@
 This code backs up my talk about [browser-monkey](https://github.com/featurist/browser-monkey) testing library.
 
-Clone this and `npm install`.
+Installation
+---------
 
-Run tests in Chrome with `npm test-karma`
+Clone this and `npm install`. Then:
 
-Run tests in Electron with `npm test-electron`
+`npm start` to run the app
 
-TODO: Run tests in node (via virtual dom) with `npm run test-vdom`
+`npm test-karma` to run tests in karma/browserify+Chrome
+
+`npm test-electron` to run tests in electron/node
+
+TODO: `npm run test-vdom` to run tests in vdom/node
