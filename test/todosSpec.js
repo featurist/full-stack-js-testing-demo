@@ -1,8 +1,8 @@
-import browser from 'browser-monkey';
 import router from 'plastiq-router';
+import browser from 'browser-monkey';
 import { expect } from 'chai';
-import mountApp from './mountApp';
 import App from '../browser/app';
+import mountAppAndVisit from './mountApp';
 import fakeApi from './fakeApi';
 
 describe('todos app', () => {
@@ -23,29 +23,24 @@ describe('todos app', () => {
     }
   });
 
-  beforeEach(() => {
-    router.start({history: router.hash});
-    window.location.hash = '';
+  beforeEach(() => router.start());
+  afterEach(() => router.clear());
 
-    mountApp(new App({
-      api: fakeApi,
-      router: router
-    }));
-  });
+  context('when user lands on "/"', function () {
+    beforeEach(() => {
+      mountAppAndVisit(new App({api: fakeApi, router: router}), '/');
+    });
 
-  afterEach(() => {
-    router.clear();
-  });
-
-  it('allows user to fetch todos', async () => {
-    await page.fetchTODOs();
-    await page.observeLoadingBar();
-    await page.expectTODOs('one', 'two');
+    it('allows user to fetch todos', async () => {
+      await page.fetchTODOs();
+      await page.observeLoadingBar();
+      await page.expectTODOs('one', 'two');
+    });
   });
 
   context('when user lands on "/todos"', () => {
     beforeEach(() => {
-      window.location.hash = 'todos';
+      mountAppAndVisit(new App({api: fakeApi, router: router}), '/todos');
     });
 
     it('fetches todos automatically', async () => {

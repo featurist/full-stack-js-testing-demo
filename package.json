@@ -3,7 +3,7 @@
     "start": "babel-node lib/app.js",
     "dev": "nodemon --exec babel-node lib/app.js",
     "test-karma": "karma start --single-run",
-    "test-electron": "electron-mocha --renderer test/**/*Spec.js"
+    "test-electron": "electron-mocha --renderer --compilers js:babel-core/register test/**/*Spec.js"
   },
   "dependencies": {
     "babel-cli": "^6.16.0",
