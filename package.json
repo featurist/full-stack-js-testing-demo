@@ -3,7 +3,8 @@
     "start": "babel-node lib/app.js",
     "dev": "nodemon --exec babel-node lib/app.js",
     "test-karma": "karma start --single-run",
-    "test-electron": "electron-mocha --renderer --compilers js:babel-core/register test/**/*Spec.js"
+    "test-electron": "electron-mocha --renderer --compilers js:babel-core/register test/**/*Spec.js",
+    "test-vdom": "mocha --compilers js:babel-core/register test/**/*Spec.js"
   },
   "dependencies": {
     "babel-cli": "^6.16.0",
@@ -20,7 +21,7 @@
     "plastiq-router": "^2.18.0"
   },
   "devDependencies": {
-    "browser-monkey": "^1.29.2",
+    "browser-monkey": "featurist/browser-monkey",
     "browserify": "^13.1.0",
     "chai": "^3.5.0",
     "electron-mocha": "^3.1.1",
@@ -31,6 +32,7 @@
     "karma-mocha": "^1.2.0",
     "mocha": "^3.1.2",
     "nodemon": "^1.11.0",
+    "vdom-query": "dereke/vdom-query#rewrite-like-jquery",
     "watchify": "^3.7.0"
   },
   "name": "bm-demo",

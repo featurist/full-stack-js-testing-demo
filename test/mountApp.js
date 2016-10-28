@@ -1,4 +1,7 @@
 import plastiq from 'plastiq';
+import runningInBrowser from './stubBrowser';
+import createBrowser from 'browser-monkey/create';
+import vquery from 'vdom-query';
 
 function addRefreshButton() {
   var refreshLink = document.createElement('a');
@@ -8,28 +11,36 @@ function addRefreshButton() {
   document.body.appendChild(document.createElement('hr'));
 }
 
-var isDebugging = /\/debug\.html$/.test(window.location.pathname);
-
-if (isDebugging) {
-  addRefreshButton();
-}
-
 var div;
-
 function createTestDiv() {
   if (div) {
     div.parentNode.removeChild(div);
   }
-
   div = document.createElement('div');
-
   document.body.appendChild(div);
-
   return div;
 }
 
-export default function(app, url) {
-  window.history.pushState(null, null, url);
+if (runningInBrowser) {
+  if (/\/debug\.html$/.test(window.location.pathname)) {
+    localStorage['debug'] = 'browser-monkey';
+    addRefreshButton();
+  }
+}
 
-  plastiq.append(createTestDiv(), app);
+export default function(app) {
+  var browser;
+
+  if (runningInBrowser) {
+    browser = createBrowser(document.body);
+    plastiq.append(createTestDiv(), app);
+  } else {
+    var vdom = plastiq.html('body');
+
+    browser = createBrowser(vdom);
+    browser.set({$: vquery, visibleOnly: false, document: {}});
+
+    plastiq.appendVDom(vdom, app, { requestRender: setTimeout });
+  }
+  return browser;
 }
