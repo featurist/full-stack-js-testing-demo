@@ -1,6 +1,6 @@
-import plastiq from 'plastiq';
+import hyperdom from 'hyperdom';
 import App from './app.jsx';
-import router from 'plastiq-router';
+import router from 'hyperdom-router';
 
 router.start();
-plastiq.append(document.body, new App({router: router}));
+hyperdom.append(window.document.body, new App({router: router}));

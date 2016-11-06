@@ -17,8 +17,8 @@
     "express": "^4.14.0",
     "express-babelify-middleware": "^0.2.1",
     "httpism": "^2.4.2",
-    "plastiq": "^1.33.0",
-    "plastiq-router": "^2.18.0"
+    "hyperdom": "^0.2.0",
+    "hyperdom-router": "featurist/plastiq-router#hyperdomify"
   },
   "devDependencies": {
     "browser-monkey": "featurist/browser-monkey",
@@ -32,7 +32,7 @@
     "karma-mocha": "^1.2.0",
     "mocha": "^3.1.2",
     "nodemon": "^1.11.0",
-    "vdom-query": "dereke/vdom-query#rewrite-like-jquery",
+    "vdom-query": "featurist/vdom-query",
     "watchify": "^3.7.0"
   },
   "name": "bm-demo",
