@@ -16,6 +16,12 @@
   dependencies:
     typescript "^2.0.3"
 
+"2vdom@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/2vdom/-/2vdom-0.1.2.tgz#0484f83a9295770059b21e80edeae5e2047def3b"
+  dependencies:
+    htmlparser2 "^3.9.0"
+
 abab@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/abab/-/abab-1.0.3.tgz#b81de5f7274ec4e756d797cd834f303642724e5d"
@@ -902,13 +908,15 @@ brorand@^1.0.1:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/brorand/-/brorand-1.0.6.tgz#4028706b915f91f7b349a2e0bf3c376039d216e5"
 
-browser-monkey@^1.29.2:
+browser-monkey@featurist/browser-monkey:
   version "1.29.2"
-  resolved "https://registry.yarnpkg.com/browser-monkey/-/browser-monkey-1.29.2.tgz#f46440e5d8d76988e305b09e5a89c92525383f1f"
+  resolved "https://codeload.github.com/featurist/browser-monkey/tar.gz/e73d3df0ee4dce6f43d2bda2cac13ab3d5a4b2f9"
   dependencies:
     chai "3.3.0"
     debug "2.2.0"
-    jquery "2.1.3"
+    detect-browser "1.4.0"
+    global "^4.3.0"
+    jquery "2.2.2"
     trytryagain "1.2.0"
 
 browser-pack@^6.0.1:
@@ -1467,6 +1475,12 @@ css@~1.0.8:
     css-parse "1.0.4"
     css-stringify "1.0.5"
 
+"cssauron@git://github.com/featurist/cssauron.git#case-insensitive-tags":
+  version "1.2.0"
+  resolved "git://github.com/featurist/cssauron.git#bda120df8ca5eb19568a7410b81102756008f514"
+  dependencies:
+    through X.X.X
+
 "cssom@>= 0.3.0 < 0.4.0", cssom@0.3.x:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/cssom/-/cssom-0.3.1.tgz#c9e37ef2490e64f6d1baa10fda852257082c25d3"
@@ -1567,6 +1581,10 @@ destroy@~1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/destroy/-/destroy-1.0.4.tgz#978857442c44749e4206613e37946205826abd80"
 
+detect-browser@1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/detect-browser/-/detect-browser-1.4.0.tgz#98793ece019d8ce3488071ca9f611ac8b6aa9eb8"
+
 detect-indent@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/detect-indent/-/detect-indent-3.0.1.tgz#9dc5e5ddbceef8325764b9451b02bc6d54084f75"
@@ -1622,21 +1640,21 @@ domain-browser@~1.1.0:
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/domain-browser/-/domain-browser-1.1.7.tgz#867aa4b093faa05f1de08c06f4d7b21fdf8698bc"
 
+domelementtype@^1.3.0, domelementtype@1:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/domelementtype/-/domelementtype-1.3.0.tgz#b17aed82e8ab59e52dd9c19b1756e0fc187204c2"
+
 domelementtype@~1.1.1:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/domelementtype/-/domelementtype-1.1.3.tgz#bd28773e2642881aec51544924299c5cd822185b"
 
-domelementtype@1:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/domelementtype/-/domelementtype-1.3.0.tgz#b17aed82e8ab59e52dd9c19b1756e0fc187204c2"
-
-domhandler@2.3:
+domhandler@^2.3.0, domhandler@2.3:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/domhandler/-/domhandler-2.3.0.tgz#2de59a0822d5027fabff6f032c2b25a2a8abe738"
   dependencies:
     domelementtype "1"
 
-domutils@1.5, domutils@1.5.1:
+domutils@^1.5.1, domutils@1.5, domutils@1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/domutils/-/domutils-1.5.1.tgz#dcd8488a26f563d61079e48c9f7b7e32373682cf"
   dependencies:
@@ -1828,7 +1846,7 @@ ent@~2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/ent/-/ent-2.2.0.tgz#e964219325a21d05f44466a2f686ed6ce5f5dd1d"
 
-entities@~1.1.1:
+entities@^1.1.1, entities@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.1.tgz#6e5c2d0a5621b5dadaecef80b90edfb5cd7772f0"
 
@@ -2390,6 +2408,17 @@ htmlescape@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/htmlescape/-/htmlescape-1.1.1.tgz#3a03edc2214bca3b66424a3e7959349509cb0351"
 
+htmlparser2@^3.9.0:
+  version "3.9.2"
+  resolved "https://registry.yarnpkg.com/htmlparser2/-/htmlparser2-3.9.2.tgz#1bdf87acca0f3f9e53fa4fcceb0f4b4cbb00b338"
+  dependencies:
+    domelementtype "^1.3.0"
+    domhandler "^2.3.0"
+    domutils "^1.5.1"
+    entities "^1.1.1"
+    inherits "^2.0.1"
+    readable-stream "^2.0.2"
+
 htmlparser2@~3.8.1:
   version "3.8.3"
   resolved "https://registry.yarnpkg.com/htmlparser2/-/htmlparser2-3.8.3.tgz#996c28b191516a8be86501a7d79757e5c70c1068"
@@ -2446,6 +2475,18 @@ https-proxy-agent@1.0.0:
     agent-base "2"
     debug "2"
     extend "3"
+
+hyperdom:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/hyperdom/-/hyperdom-0.2.0.tgz#ed872729778483af56dd3f714103f398ecf0fecc"
+  dependencies:
+    virtual-dom "2.1.1"
+
+hyperdom-router@featurist/plastiq-router#hyperdomify:
+  version "2.18.0"
+  resolved "https://codeload.github.com/featurist/plastiq-router/tar.gz/6291e780824b84c5662f344291996c4cb0b7d2af"
+  dependencies:
+    routism "1.2.0"
 
 iconv-lite@0.4.13:
   version "0.4.13"
@@ -2706,9 +2747,9 @@ jodid25519@^1.0.0:
   dependencies:
     jsbn "~0.1.0"
 
-jquery@2.1.3:
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-2.1.3.tgz#6ec55204673d505d39432c5bf5cfad10e1dbad2e"
+jquery@2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-2.2.2.tgz#3e302dc61eb329a21e9efac937d731f061134c59"
 
 js-string-escape@^1.0.0:
   version "1.0.1"
@@ -3627,18 +3668,6 @@ pinkie@^2.0.0:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
 
-plastiq-router@^2.18.0:
-  version "2.18.0"
-  resolved "https://registry.yarnpkg.com/plastiq-router/-/plastiq-router-2.18.0.tgz#617f53c30ce263bd1215bb08da4dfa95c9e739b9"
-  dependencies:
-    routism "1.2.0"
-
-plastiq@^1.33.0:
-  version "1.33.0"
-  resolved "https://registry.yarnpkg.com/plastiq/-/plastiq-1.33.0.tgz#6523ae14544f35357bd1e868ce529e897a64748e"
-  dependencies:
-    virtual-dom "2.1.1"
-
 prelude-ls@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.1.2.tgz#21932a549f5e52ffd9a827f570e04be62a97da54"
@@ -4459,7 +4488,7 @@ throttleit@0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/throttleit/-/throttleit-0.0.2.tgz#cfedf88e60c00dd9697b61fdd2a8343a9b680eaf"
 
-"through@>=2.2.7 <3", through@~2.3, through@~2.3.1, through@2:
+"through@>=2.2.7 <3", through@~2.3, through@~2.3.1, through@2, through@X.X.X:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
 
@@ -4693,6 +4722,13 @@ validate-npm-package-license@^3.0.1:
 vary@~1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.0.tgz#e1e5affbbd16ae768dd2674394b9ad3022653140"
+
+vdom-query@featurist/vdom-query:
+  version "1.0.0"
+  resolved "https://codeload.github.com/featurist/vdom-query/tar.gz/24b452a7dd9a00a66cfe511ba135fb13bc50fdca"
+  dependencies:
+    "2vdom" "^0.1.2"
+    cssauron "git://github.com/featurist/cssauron.git#case-insensitive-tags"
 
 verror@1.3.6:
   version "1.3.6"

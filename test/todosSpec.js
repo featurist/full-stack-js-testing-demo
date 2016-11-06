@@ -1,6 +1,6 @@
-import router from 'plastiq-router';
+import router from 'hyperdom-router';
 import App from '../browser/app';
-import mountApp from './mountApp';
+import mountApp from './mountApp'
 import fakeApi from './fakeApi';
 import pageHelper from './pageHelper';
 

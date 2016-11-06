@@ -1,4 +1,4 @@
-import plastiq from 'plastiq';
+import hyperdom from 'hyperdom';
 import runningInBrowser from './stubBrowser';
 import createBrowser from 'browser-monkey/create';
 import vquery from 'vdom-query';
@@ -33,14 +33,14 @@ export default function(app) {
 
   if (runningInBrowser) {
     browser = createBrowser(document.body);
-    plastiq.append(createTestDiv(), app);
+    hyperdom.append(createTestDiv(), app);
   } else {
-    var vdom = plastiq.html('body');
+    var vdom = hyperdom.html('body');
 
     browser = createBrowser(vdom);
     browser.set({$: vquery, visibleOnly: false, document: {}});
 
-    plastiq.appendVDom(vdom, app, { requestRender: setTimeout });
+    hyperdom.appendVDom(vdom, app, { requestRender: setTimeout });
   }
   return browser;
 }
