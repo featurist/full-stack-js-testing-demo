@@ -26,6 +26,7 @@
     "chai": "^3.5.0",
     "electron-mocha": "^3.1.1",
     "electron-prebuilt-compile": "^1.4.3",
+    "hypermonkey": "dereke/hypermonkey",
     "karma": "^1.3.0",
     "karma-browserify": "^5.1.0",
     "karma-chrome-launcher": "^2.0.0",

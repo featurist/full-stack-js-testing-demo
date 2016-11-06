@@ -1570,6 +1570,23 @@ deps-sort@^2.0.0:
     subarg "^1.0.0"
     through2 "^2.0.0"
 
+dereke/hypermonkey:
+  name hypermonkey
+  version "0.0.1"
+  resolved "https://codeload.github.com/dereke/hypermonkey/tar.gz/546a473edde202ca0ff2c06e8bd2792747cb9ed2"
+  dependencies:
+    babel-cli "^6.16.0"
+    babel-plugin-transform-runtime "^6.15.0"
+    babel-preset-es2015 "^6.16.0"
+    babel-preset-react "^6.16.0"
+    babel-runtime "^6.11.6"
+    babelify "^7.3.0"
+    browser-monkey featurist/browser-monkey
+    global "^4.3.1"
+    hyperdom "^0.2.0"
+    is-node "^1.0.2"
+    vdom-query featurist/vdom-query
+
 des.js@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/des.js/-/des.js-1.0.0.tgz#c074d2e2aa6a8a9a07dbd61f9a15c2cd83ec8ecc"
@@ -2272,7 +2289,7 @@ glob@7.0.x:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-global@^4.3.0:
+global@^4.3.0, global@^4.3.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/global/-/global-4.3.1.tgz#5f757908c7cbabce54f386ae440e11e26b7916df"
   dependencies:
@@ -2476,7 +2493,7 @@ https-proxy-agent@1.0.0:
     debug "2"
     extend "3"
 
-hyperdom:
+hyperdom, hyperdom@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/hyperdom/-/hyperdom-0.2.0.tgz#ed872729778483af56dd3f714103f398ecf0fecc"
   dependencies:
@@ -2646,6 +2663,10 @@ is-my-json-valid@^2.12.4:
     generate-object-property "^1.1.0"
     jsonpointer "^4.0.0"
     xtend "^4.0.0"
+
+is-node@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/is-node/-/is-node-1.0.2.tgz#d7d002745ef7debbb7477e988956ab0a4fccb653"
 
 is-npm@^1.0.0:
   version "1.0.0"

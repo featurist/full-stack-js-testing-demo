@@ -1,6 +1,6 @@
 import router from 'hyperdom-router';
 import App from '../browser/app';
-import mountApp from './mountApp'
+import hypermonkey from 'hypermonkey'
 import fakeApi from './fakeApi';
 import pageHelper from './pageHelper';
 
@@ -9,7 +9,7 @@ describe('todos app', () => {
 
   beforeEach(() => {
     router.start();
-    var browser = mountApp(new App({api: fakeApi, router: router}));
+    var browser = hypermonkey(new App({api: fakeApi, router: router}));
     page = pageHelper(browser);
   });
 
