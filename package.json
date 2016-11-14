@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "babel-node lib/app.js",
+    "start": "babel-node lib/server.js",
     "dev": "nodemon --exec babel-node lib/app.js",
     "test-karma": "karma start --single-run",
     "test-electron": "electron-mocha --renderer --compilers js:babel-core/register test/**/*Spec.js",
@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "babel-cli": "^6.16.0",
+    "babel-core": "^6.18.2",
+    "babel-plugin-transform-regenerator": "^6.16.1",
     "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-react": "^6.16.0",
@@ -26,6 +28,7 @@
     "chai": "^3.5.0",
     "electron-mocha": "^3.1.1",
     "electron-prebuilt-compile": "^1.4.3",
+    "global": "^4.3.1",
     "hypermonkey": "dereke/hypermonkey",
     "karma": "^1.3.0",
     "karma-browserify": "^5.1.0",
@@ -34,6 +37,7 @@
     "mocha": "^3.1.2",
     "nodemon": "^1.11.0",
     "vdom-query": "featurist/vdom-query",
+    "vinehill": "dereke/vinehill",
     "watchify": "^3.7.0"
   },
   "name": "bm-demo",
