@@ -1,23 +1,22 @@
 import window from 'global';
 import hypermonkey from 'hypermonkey';
-import router from 'hyperdom-router';
 import App from '../browser/app';
 import ServerApp from '../lib/app';
 import pageHelper from './pageHelper';
-import vinehill from 'vinehill';
 
 describe('todos app', () => {
-  var page;
+  var page, monkey;
 
   beforeEach(() => {
-    vinehill.setOrigin('http://localhost:1234');
-    vinehill('http://localhost:1234', ServerApp);
-    router.start();
-    var browser = hypermonkey(new App({router: router}));
-    page = pageHelper(browser);
+    monkey = hypermonkey()
+      .withServer('http://localhost:1234', ServerApp)
+      .withApp(router => new App({router: router}))
+      .start();
+
+    page = pageHelper(monkey.browser);
   });
 
-  afterEach(() => router.clear());
+  afterEach(() => monkey.stop());
 
   context('when user lands on "/"', () => {
     beforeEach(() => {

@@ -23,7 +23,6 @@
     "hyperdom-router": "featurist/plastiq-router#hyperdomify"
   },
   "devDependencies": {
-    "browser-monkey": "featurist/browser-monkey",
     "browserify": "^13.1.0",
     "chai": "^3.5.0",
     "electron-mocha": "^3.1.1",
@@ -37,7 +36,6 @@
     "mocha": "^3.1.2",
     "nodemon": "^1.11.0",
     "vdom-query": "featurist/vdom-query",
-    "vinehill": "dereke/vinehill",
     "watchify": "^3.7.0"
   },
   "name": "bm-demo",
