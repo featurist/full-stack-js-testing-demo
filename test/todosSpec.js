@@ -1,40 +1,43 @@
-import router from 'plastiq-router';
+import window from 'global';
+import hypermonkey from 'hypermonkey';
 import App from '../browser/app';
-import mountApp from './mountApp';
-import fakeApi from './fakeApi';
+import ServerApp from '../lib/app';
 import pageHelper from './pageHelper';
 
 describe('todos app', () => {
-  var page;
+  var page, monkey;
 
   beforeEach(() => {
-    router.start();
-    var browser = mountApp(new App({api: fakeApi, router: router}));
-    page = pageHelper(browser);
+    monkey = hypermonkey()
+      .withServer('http://localhost:1234', ServerApp)
+      .withApp(router => new App({router: router}))
+      .start();
+
+    page = pageHelper(monkey.browser);
   });
 
-  afterEach(() => router.clear());
+  afterEach(() => monkey.stop());
 
   context('when user lands on "/"', () => {
-    before(() => {
+    beforeEach(() => {
       window.history.pushState(null, null, '/');
     });
 
     it('allows user to fetch todos', async () => {
       await page.fetchTODOs();
       await page.observeLoadingBar();
-      await page.expectTODOs('one', 'two');
+      await page.expectTODOs('buy beer', 'call Dave', 'watch tv');
     });
   });
 
   context('when user lands on "/todos"', () => {
-    before(() => {
+    beforeEach(() => {
       window.history.pushState(null, null, '/todos');
     });
 
     it('fetches todos automatically', async () => {
       await page.observeLoadingBar();
-      await page.expectTODOs('one', 'two');
+      await page.expectTODOs('buy beer', 'call Dave', 'watch tv');
     });
   });
 });

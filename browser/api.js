@@ -1,5 +1,9 @@
+import httpism from 'httpism/browser';
+
 export default {
   loadTODOs() {
-    return window.fetch('/api/todos').then(res => res.json());
+    return httpism.get('/api/todos').then(res => res.body).catch(e => {
+      console.log('eee', e)
+    });
   }
 }
