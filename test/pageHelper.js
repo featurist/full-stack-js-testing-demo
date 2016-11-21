@@ -4,15 +4,15 @@ export default function(browser) {
   var $ = browser.get('$');
 
   return browser.component({
-    fetchTODOs: function() {
+    fetchTODOs() {
       return this.find('button').click();
     },
 
-    observeLoadingBar: function() {
+    observeLoadingBar() {
       return this.find('.loading', {text: 'Loading...'}).shouldExist();
     },
 
-    expectTODOs: async function(...expectedTodos) {
+    async expectTODOs(...expectedTodos) {
       var actualTodos = (await this.find('ul li').elements())
         .map(e => $(e).innerText());
 

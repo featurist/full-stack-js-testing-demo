@@ -1,15 +1,24 @@
 import router from 'plastiq-router';
 import App from '../browser/app';
 import mountApp from './mountApp';
-import fakeApi from './fakeApi';
+import createApi from './fakeApi';
 import pageHelper from './pageHelper';
 
 describe('todos app', () => {
-  var page;
+  let page, api;
 
   beforeEach(() => {
+    api = createApi();
+    api.respond({
+      to: 'loadTODOs',
+      withData: [
+        {title: 'one'},
+        {title: 'two'}
+      ]
+    });
+
     router.start();
-    var browser = mountApp(new App({api: fakeApi, router: router}));
+    const browser = mountApp(new App({api, router}));
     page = pageHelper(browser);
   });
 
