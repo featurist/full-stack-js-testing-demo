@@ -4,12 +4,12 @@ export default function(browser) {
   var $ = browser.get('$');
 
   return browser.component({
-    fetchTODOs() {
-      return this.find('button').click();
+    fetchTODOsButton() {
+      return this.find('button');
     },
 
-    observeLoadingBar() {
-      return this.find('.loading', {text: 'Loading...'}).shouldExist();
+    loadingBar() {
+      return this.find('.loading', {text: 'Loading...'});
     },
 
     async expectTODOs(...expectedTodos) {
