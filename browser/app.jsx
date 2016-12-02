@@ -1,5 +1,5 @@
-/** @jsx plastiq.jsx */
-import plastiq from 'plastiq';
+/** @jsx hyperdom.jsx */
+import hyperdom from 'hyperdom';
 import Api from './api';
 
 function navigateTo(route) {
