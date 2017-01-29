@@ -2,7 +2,6 @@
   "scripts": {
     "start": "babel-node lib/app.js",
     "dev": "nodemon --exec babel-node lib/app.js",
-    "test-karma": "karma start --single-run",
     "test-electron": "electron-mocha --renderer --compilers js:babel-core/register test/**/*Spec.js",
     "test-vdom": "mocha --compilers js:babel-core/register test/**/*Spec.js"
   },
@@ -17,19 +16,15 @@
     "express": "^4.14.0",
     "express-babelify-middleware": "^0.2.1",
     "httpism": "^2.4.2",
-    "plastiq": "^1.33.0",
-    "plastiq-router": "^2.18.0"
+    "hyperdom": "^0.2.0",
+    "hyperdom-router": "^2.18.0"
   },
   "devDependencies": {
     "browser-monkey": "featurist/browser-monkey",
     "browserify": "^13.1.0",
     "chai": "^3.5.0",
-    "electron-mocha": "^3.1.1",
-    "electron-prebuilt-compile": "^1.4.3",
-    "karma": "^1.3.0",
-    "karma-browserify": "^5.1.0",
-    "karma-chrome-launcher": "^2.0.0",
-    "karma-mocha": "^1.2.0",
+    "electron": "^1.4.15",
+    "electron-mocha": "jprichardson/electron-mocha",
     "mocha": "^3.1.2",
     "nodemon": "^1.11.0",
     "vdom-query": "dereke/vdom-query#rewrite-like-jquery",

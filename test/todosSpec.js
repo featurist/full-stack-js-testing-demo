@@ -1,4 +1,4 @@
-import router from 'plastiq-router';
+import router from 'hyperdom-router';
 import App from '../browser/app';
 import mountApp from './mountApp';
 import createApi from './fakeApi';
