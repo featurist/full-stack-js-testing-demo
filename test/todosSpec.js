@@ -1,27 +1,42 @@
+import fs from 'fs'
+import VineHill from 'vinehill'
+import server from '../lib/app'
+import sqlite3 from 'sqlite3'
 import App from '../browser/app';
 import mountApp from './mountApp';
-import createApi from './fakeApi';
 import pageHelper from './pageHelper';
 
+let dbPath = process.env.DB = process.cwd() + '/test/test.db'
+
+async function seedDb() {
+  return new Promise((resolve, reject) => {
+    fs.existsSync(dbPath) && fs.unlinkSync(dbPath)
+
+    const db = new sqlite3.Database(dbPath)
+
+    db.run('create table todos (id integer, title text)', (err) => {
+      if (err) return reject(err)
+
+      db.run("insert into todos values (1, 'one'), (2, 'two')", () => {
+        db.close()
+        resolve()
+      })
+    })
+  })
+}
+
 describe('todos app', () => {
-  let page, api;
+  let page
 
-  beforeEach(() => {
-    api = createApi();
-    api.respond({
-      to: 'loadTODOs',
-      withData: [
-        {title: 'one'},
-        {title: 'two'}
-      ]
-    });
-
-    const browser = mountApp(new App({api}));
+  beforeEach(async () => {
+    await seedDb()
+    new VineHill().start('http://todos.com', server)
+    const browser = mountApp(new App('http://todos.com'));
     page = pageHelper(browser);
   });
 
   context('when user lands on "/"', () => {
-    beforeEach(() => {
+    before(() => {
       window.history.pushState(null, null, '/');
     });
 
@@ -33,7 +48,7 @@ describe('todos app', () => {
   });
 
   context('when user lands on "/todos"', () => {
-    beforeEach(() => {
+    before(() => {
       window.history.pushState(null, null, '/todos');
     });
 

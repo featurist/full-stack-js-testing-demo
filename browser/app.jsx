@@ -1,18 +1,18 @@
 /** @jsx hyperdom.jsx */
 import hyperdom from 'hyperdom';
 import router from 'hyperdom-router';
-import Api from './api';
+import httpism from 'httpism'
 
 function navigateTo(route) {
   route().push();
 }
 
 export default class App {
-  constructor({api}) {
-    this.api = api || Api;
-
+  constructor(serverUrl) {
     router.clear()
     router.start()
+
+    this.api = httpism.api(serverUrl)
 
     this.routes = {
       home: router.route('/'),
@@ -21,7 +21,7 @@ export default class App {
   }
 
   async loadTODOs() {
-    this.todos = await this.api.loadTODOs();
+    this.todos = (await this.api.get('/api/todos')).body
   }
 
   render() {

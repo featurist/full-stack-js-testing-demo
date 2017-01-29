@@ -1,22 +1,15 @@
-This is a demo of [browser-monkey](https://github.com/featurist/browser-monkey) testing library.
+Full stack (client app + express backend + db) integration test that runs in a single node process.
+--------
+
+As a result, it is fast and debuggable. The key tech that makes this possible is [electron-mocha](https://github.com/jprichardson/electron-mocha) (runs tests in a browser that's also a node.js) and [vinehill](https://github.com/dereke/vinehill) (cuts out HTTP to keep server in the same test process).
 
 Usage
----------
+--------
 
 Clone this and `npm install`. Then:
 
-- [x] `npm start` to run the app
+- `npm start` starts the app
 
-- [x] `npm test-electron` to run the same tests in electron/node
+- `npm test` runs tests in electron/node (add `-- --interactive` to see the browser window)
 
-- [x] `npm run test-vdom` to run the same tests in vdom/node (no browser!)
-
-Test time
------------
-
-As seen on MBP 13" Core i7 (2015):
-
-```
-npm run test-electron  4.60s user 0.80s system 147% cpu 3.652 total
-npm run test-vdom  1.19s user 0.21s system 95% cpu 1.469 total
-```
+- `npm run test-vdom` runs the same tests in vdom/node (no browser!)

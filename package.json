@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "start": "babel-node lib/app.js",
+    "start": "babel-node lib/server.js",
     "dev": "nodemon --exec babel-node lib/app.js",
-    "test-electron": "electron-mocha --renderer --compilers js:babel-core/register test/**/*Spec.js",
+    "test": "electron-rebuild && electron-mocha --renderer --compilers js:babel-core/register test/**/*Spec.js",
     "test-vdom": "mocha --compilers js:babel-core/register test/**/*Spec.js"
   },
   "dependencies": {
@@ -15,9 +15,11 @@
     "browserify": "^13.1.0",
     "express": "^4.14.0",
     "express-babelify-middleware": "^0.2.1",
-    "httpism": "^2.4.2",
+    "httpism": "^2.7.0",
     "hyperdom": "^0.2.0",
-    "hyperdom-router": "^2.18.0"
+    "hyperdom-router": "^2.18.0",
+    "sqlite3": "^3.1.8",
+    "vinehill": "^0.5.0"
   },
   "devDependencies": {
     "browser-monkey": "featurist/browser-monkey",
@@ -25,6 +27,7 @@
     "chai": "^3.5.0",
     "electron": "^1.4.15",
     "electron-mocha": "jprichardson/electron-mocha",
+    "electron-rebuild": "^1.5.7",
     "mocha": "^3.1.2",
     "nodemon": "^1.11.0",
     "vdom-query": "dereke/vdom-query#rewrite-like-jquery",
