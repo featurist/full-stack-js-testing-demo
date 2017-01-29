@@ -1,4 +1,3 @@
-import router from 'hyperdom-router';
 import App from '../browser/app';
 import mountApp from './mountApp';
 import createApi from './fakeApi';
@@ -17,15 +16,12 @@ describe('todos app', () => {
       ]
     });
 
-    router.start();
-    const browser = mountApp(new App({api, router}));
+    const browser = mountApp(new App({api}));
     page = pageHelper(browser);
   });
 
-  afterEach(() => router.clear());
-
   context('when user lands on "/"', () => {
-    before(() => {
+    beforeEach(() => {
       window.history.pushState(null, null, '/');
     });
 
@@ -37,7 +33,7 @@ describe('todos app', () => {
   });
 
   context('when user lands on "/todos"', () => {
-    before(() => {
+    beforeEach(() => {
       window.history.pushState(null, null, '/todos');
     });
 

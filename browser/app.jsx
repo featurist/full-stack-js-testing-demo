@@ -1,5 +1,6 @@
 /** @jsx hyperdom.jsx */
 import hyperdom from 'hyperdom';
+import router from 'hyperdom-router';
 import Api from './api';
 
 function navigateTo(route) {
@@ -7,13 +8,15 @@ function navigateTo(route) {
 }
 
 export default class App {
-  constructor({api, router}) {
+  constructor({api}) {
     this.api = api || Api;
-    this.router = router;
+
+    router.clear()
+    router.start()
 
     this.routes = {
-      home: this.router.route('/'),
-      todos: this.router.route('/todos')
+      home: router.route('/'),
+      todos: router.route('/todos')
     };
   }
 
