@@ -1,10 +1,10 @@
-import fs from 'fs'
-import VineHill from 'vinehill'
-import server from '../lib/app'
-import sqlite3 from 'sqlite3'
-import App from '../browser/app';
-import mountApp from './mountApp';
-import pageHelper from './pageHelper';
+const fs = require('fs')
+const VineHill = require('vinehill')
+const server = require('../lib/app')
+const sqlite3 = require('sqlite3')
+const App = require('../browser/app')
+const mountApp = require('./mountApp')
+const pageHelper = require('./pageHelper')
 
 let dbPath = process.env.DB = process.cwd() + '/test/test.db'
 

@@ -1,6 +1,6 @@
-import { expect } from 'chai';
+const { expect } = require('chai')
 
-export default function(browser) {
+module.exports = function(browser) {
   var $ = browser.get('$');
 
   return browser.component({
