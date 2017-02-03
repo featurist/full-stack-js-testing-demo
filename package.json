@@ -18,11 +18,12 @@
     "httpism": "^2.7.0",
     "hyperdom": "^0.2.0",
     "hyperdom-router": "^2.18.0",
-    "sqlite3": "^3.1.8",
-    "vinehill": "^0.5.0"
+    "hyperx": "^2.0.5",
+    "sqlite3": "^3.1.8"
   },
   "devDependencies": {
     "browser-monkey": "featurist/browser-monkey",
+    "vinehill": "^0.5.0",
     "browserify": "^13.1.0",
     "chai": "^3.5.0",
     "electron": "^1.4.15",
