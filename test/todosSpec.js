@@ -42,7 +42,6 @@ describe('todos app', () => {
 
     it('allows user to fetch todos', async () => {
       await page.fetchTODOsButton().click();
-      await page.loadingBar().shouldExist();
       await page.expectTODOs('one', 'two');
     });
   });
@@ -53,7 +52,6 @@ describe('todos app', () => {
     });
 
     it('fetches todos automatically', async () => {
-      await page.loadingBar().shouldExist();
       await page.expectTODOs('one', 'two');
     });
   });

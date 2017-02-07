@@ -20,6 +20,8 @@ module.exports = class App {
       home: router.route('/'),
       todos: router.route('/todos')
     };
+
+    this.todos = []
   }
 
   async loadTODOs() {
@@ -36,11 +38,7 @@ module.exports = class App {
         }
         ${
           this.routes.todos({ onarrival: () => this.loadTODOs() }, () => {
-            return this.todos
-              ?
-                h`<ul>${ this.todos.map(t => h`<li>${ t.title }</li>`) }</ul>`
-              :
-                h`<div class="loading">Loading...</div>`
+            return h`<ul>${ this.todos.map(t => h`<li>${ t.title }</li>`) }</ul>`
           })
         }
       </main>`

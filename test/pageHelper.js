@@ -8,10 +8,6 @@ module.exports = function(browser) {
       return this.find('button');
     },
 
-    loadingBar() {
-      return this.find('.loading', {text: 'Loading...'});
-    },
-
     async expectTODOs(...expectedTodos) {
       var actualTodos = (await this.find('ul li').elements())
         .map(e => $(e).innerText());
