@@ -40,5 +40,6 @@ module.exports = function(app) {
 
     hyperdom.appendVDom(vdom, app, { requestRender: setTimeout });
   }
+  browser.set({ timeout: process.env.BM_TIMEOUT || 1000 })
   return browser;
 }
