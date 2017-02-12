@@ -9,8 +9,6 @@ This is made possible by the following tech:
 
 - [browser-monkey](https://github.com/featurist/browser-monkey) interacts with web pages and asserts DOM
 
-- [vinehill](https://github.com/featurist/vinehill) cuts out HTTP to keep server in the same test process. This is optional (yet highly recommended). Check out [no_vh](../../tree/no_vh) branch to see how backend service is started for real.
-
 Usage
 --------
 
