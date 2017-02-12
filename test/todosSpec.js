@@ -1,5 +1,4 @@
 const fs = require('fs')
-const vineHill = require('vinehill')
 const server = require('../server/serverApp')
 const sqlite3 = require('sqlite3')
 const App = require('../browser/browserApp')
@@ -25,13 +24,17 @@ async function seedDb() {
 }
 
 describe('todos app', () => {
-  let browser
+  let browser, backend, port = 6365
 
   beforeEach(async () => {
     await seedDb()
-    vineHill({'http://todos.com': server})
-    browser = mountApp(new App('http://todos.com'))
-  });
+    backend = server.listen(port)
+    browser = mountApp(new App(`http://localhost:${port}`))
+  })
+
+  afterEach(() => {
+    backend.close()
+  })
 
   context('when user lands on "/"', () => {
     before(() => {
