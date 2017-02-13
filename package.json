@@ -23,8 +23,7 @@
     "sqlite3": "^3.1.8"
   },
   "devDependencies": {
-    "browser-monkey": "featurist/browser-monkey",
-    "vinehill": "^0.5.0",
+    "browser-monkey": "^2.0.0",
     "browserify": "^13.1.0",
     "chai": "^3.5.0",
     "electron": "beta",
@@ -33,6 +32,7 @@
     "mocha": "^3.1.2",
     "nodemon": "^1.11.0",
     "vdom-query": "dereke/vdom-query#rewrite-like-jquery",
+    "vinehill": "^0.6.0",
     "watchify": "^3.7.0"
   },
   "name": "bm-demo",

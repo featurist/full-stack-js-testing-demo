@@ -1,5 +1,5 @@
 const fs = require('fs')
-const VineHill = require('vinehill')
+const vineHill = require('vinehill')
 const server = require('../lib/app')
 const sqlite3 = require('sqlite3')
 const App = require('../browser/app')
@@ -30,7 +30,7 @@ describe('todos app', () => {
 
   beforeEach(async () => {
     await seedDb()
-    new VineHill().start('http://todos.com', server)
+    vineHill({'http://todos.com': server})
     const browser = mountApp(new App('http://todos.com'));
     page = pageHelper(browser);
   });
