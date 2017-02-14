@@ -4,8 +4,8 @@
     "node": ">7"
   },
   "scripts": {
-    "start": "node --harmony-async-await lib/server.js",
-    "dev": "nodemon --exec node --harmony-async-await lib/app.js",
+    "start": "node --harmony-async-await server/start.js",
+    "dev": "nodemon --exec node --harmony-async-await server/start.js",
     "test": "electron-rebuild && electron-mocha --js-flags='--harmony-async-await' --renderer test/**/*Spec.js",
     "test-vdom": "mocha test/**/*Spec.js"
   },

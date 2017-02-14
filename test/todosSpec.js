@@ -1,8 +1,8 @@
 const fs = require('fs')
 const vineHill = require('vinehill')
-const server = require('../lib/app')
+const server = require('../server/serverApp')
 const sqlite3 = require('sqlite3')
-const App = require('../browser/app')
+const App = require('../browser/browserApp')
 const mountApp = require('./mountApp')
 const pageHelper = require('./pageHelper')
 

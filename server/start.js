@@ -1,4 +1,4 @@
-const app = require('./app')
+const app = require('./serverApp')
 
 var port = process.env.PORT || 4322;
 

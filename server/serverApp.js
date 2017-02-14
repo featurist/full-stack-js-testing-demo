@@ -13,7 +13,7 @@ app.get('/api/todos', (req, res) => {
   })
 });
 
-app.get('/bundle.js', babelify('browser/browser.js'));
+app.get('/bundle.js', babelify('browser/mount.js'));
 
 app.get('*', (req, res) => {
   res.sendFile(process.cwd() + '/public/index.html');
