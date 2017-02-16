@@ -22,8 +22,8 @@ function createTestDiv() {
 }
 
 if (runningInBrowser) {
-  localStorage['debug'] = '*';
-  addRefreshButton();
+  require('debug/browser')
+  addRefreshButton()
 }
 
 module.exports = function(app) {
