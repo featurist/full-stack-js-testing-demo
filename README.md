@@ -14,6 +14,8 @@ This is made possible by the following tech:
 Usage
 --------
 
+Requires Node 7 or higher.
+
 Clone this repositoty and `npm install`. Then:
 
 - `npm start` starts the app
