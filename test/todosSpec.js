@@ -4,7 +4,6 @@ const server = require('../server/serverApp')
 const sqlite3 = require('sqlite3')
 const App = require('../browser/browserApp')
 const mountApp = require('./mountApp')
-const { expect } = require('chai')
 
 let dbPath = process.env.DB = process.cwd() + '/test/test.db'
 
@@ -25,14 +24,6 @@ async function seedDb() {
   })
 }
 
-async function expectTODOs(browser, ...expectedTodos) {
-  const $ = browser.get('$')
-  const actualTodos = (await browser.find('ul li').elements())
-    .map(e => $(e).innerText())
-
-  expect(actualTodos.sort()).to.eql(expectedTodos.sort())
-}
-
 describe('todos app', () => {
   let browser
 
@@ -49,7 +40,7 @@ describe('todos app', () => {
 
     it('allows user to fetch todos', async () => {
       await browser.find('button').click()
-      await expectTODOs(browser, 'one', 'two')
+      await browser.find('ul li').shouldHave({text: ['one', 'two']})
     });
   });
 
@@ -59,7 +50,7 @@ describe('todos app', () => {
     });
 
     it('fetches todos automatically', async () => {
-      await expectTODOs(browser, 'one', 'two')
+      await browser.find('ul li').shouldHave({text: ['one', 'two']})
     });
   });
 });
