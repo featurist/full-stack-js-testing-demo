@@ -26,6 +26,7 @@
     "browser-monkey": "^2.0.0",
     "browserify": "^13.1.0",
     "chai": "^3.5.0",
+    "debug": "^2.6.1",
     "electron": "beta",
     "electron-mocha": "jprichardson/electron-mocha",
     "electron-rebuild": "^1.5.7",

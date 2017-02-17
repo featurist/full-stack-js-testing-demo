@@ -22,7 +22,7 @@ function createTestDiv() {
 }
 
 if (runningInBrowser) {
-  require('debug/browser')
+  require('debug/src/browser')
   addRefreshButton()
 }
 
