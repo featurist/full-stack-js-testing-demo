@@ -1,11 +1,11 @@
 {
   "engineStrict": true,
   "engines": {
-    "node": ">7"
+    "node": "7.6"
   },
   "scripts": {
-    "start": "node --harmony-async-await server/start.js",
-    "dev": "nodemon --exec node --harmony-async-await server/start.js",
+    "start": "node server/start.js",
+    "dev": "nodemon --exec node server/start.js",
     "test": "electron-rebuild && electron-mocha --js-flags='--harmony-async-await' --renderer test/**/*Spec.js",
     "test-vdom": "mocha test/**/*Spec.js"
   },
