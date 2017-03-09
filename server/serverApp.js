@@ -1,5 +1,5 @@
 const express = require('express')
-const babelify = require('express-babelify-middleware')
+const browserify = require('browserify-middleware')
 const sqlite3 = require('sqlite3')
 
 const app = express();
@@ -13,7 +13,9 @@ app.get('/api/todos', (req, res) => {
   })
 });
 
-app.get('/bundle.js', babelify('browser/mount.js'));
+app.get('/bundle.js', browserify('browser/mount.js', {
+  transform: ['babelify'],
+}));
 
 app.get('*', (req, res) => {
   res.sendFile(process.cwd() + '/public/index.html');

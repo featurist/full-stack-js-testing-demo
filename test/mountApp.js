@@ -22,7 +22,7 @@ function createTestDiv() {
 }
 
 if (runningInBrowser) {
-  require('debug/src/browser')
+  localStorage.debug = 'browser-monkey'
   addRefreshButton()
 }
 
