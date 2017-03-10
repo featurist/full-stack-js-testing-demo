@@ -14,9 +14,9 @@ Usage
 
 Requires Node 7.6 or higher.
 
-Clone this repositoty and `npm install`. Then:
+Clone this repositoty and `yarn install`. Then:
 
-- `npm start` starts the app
+- `yarn start` starts the app
 
 - `make test` runs tests in electron/node headlessly
 

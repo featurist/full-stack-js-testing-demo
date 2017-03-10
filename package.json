@@ -13,6 +13,7 @@
     "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-react": "^6.16.0",
+    "babelify": "^7.3.0",
     "browserify": "^13.1.0",
     "browserify-middleware": "^7.1.0",
     "express": "^4.14.0",
@@ -38,10 +39,7 @@
   "name": "bm-demo",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": {
-    "url": "git@github.com:artemave/browser-monkey-example.git",
-    "type": "git"
-  },
+  "repository": "git@github.com:artemave/browser-monkey-example.git",
   "author": "artemave <artemave@gmail.com>",
   "license": "MIT"
 }
