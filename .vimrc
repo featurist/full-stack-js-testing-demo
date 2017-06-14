@@ -1,7 +1,8 @@
-let g:vigun_mocha_commands = [
+set conceallevel=0
+let g:vigun_commands = [
       \ {
       \   'pattern': 'Spec.js$',
-      \   'normal': 'mocha',
-      \   'debug': 'BM_TIMEOUT=false electron-mocha --js-flags="--harmony-async-await" --interactive --no-timeouts',
+      \   'normal': 'electron-mocha --renderer',
+      \   'debug': 'DEBUG=error*,browser-monkey BM_TIMEOUT=false electron-mocha --interactive --no-timeouts',
       \ },
       \]

@@ -1,46 +1,37 @@
-const hyperdom = require('hyperdom')
-const hyperx = require('hyperx')
-const h = hyperx(hyperdom.html)
-
-const router = require('hyperdom-router')
+const {html: h} = require('hyperdom')
+const router = require('hyperdom/router')
 const httpism = require('httpism')
 
-function navigateTo(route) {
-  route().push();
+const routes = {
+  home: router.route('/'),
+  todos: router.route('/todos')
 }
 
 module.exports = class App {
   constructor(serverUrl) {
-    router.clear()
-    router.start()
-
-    this.api = httpism.api(serverUrl)
-
-    this.routes = {
-      home: router.route('/'),
-      todos: router.route('/todos')
-    };
-
+    this.api = httpism.client(serverUrl)
     this.todos = []
   }
 
-  async loadTODOs() {
-    this.todos = (await this.api.get('/api/todos')).body
+  routes() {
+    return [
+      routes.home({
+        render: () => {
+          return h('button', {onclick: () => routes.todos.push()}, 'Fetch me TODOs')
+        }
+      }),
+      routes.todos({
+        onload: async () => {
+          this.todos = await this.api.get('/api/todos')
+        },
+        render: () => {
+          return h('ul', this.todos.map(t => h('li', t.title)))
+        }
+      })
+    ]
   }
 
-  render() {
-    return h`
-      <main>
-        ${
-          this.routes.home(() => {
-            return h`<button onclick=${ () => navigateTo(this.routes.todos) }>Fetch me TODOs</button>`
-          })
-        }
-        ${
-          this.routes.todos({ onarrival: () => this.loadTODOs() }, () => {
-            return h`<ul>${ this.todos.map(t => h`<li>${ t.title }</li>`) }</ul>`
-          })
-        }
-      </main>`
+  render(content) {
+    return h('main', content)
   }
 }

@@ -1,11 +1,8 @@
 PATH := node_modules/.bin:$(PATH)
-.PHONY: test test-vdom
+.PHONY: test
 
 test:
-	electron-rebuild && electron-mocha --js-flags='--harmony-async-await' --renderer test/**/*Spec.js
+	electron-mocha --renderer test/**/*Spec.js
 
 test-debug:
-	electron-rebuild && electron-mocha --interactive --js-flags='--harmony-async-await' --renderer test/**/*Spec.js
-
-test-vdom:
-	mocha test/**/*Spec.js
+	DEBUG=error*,browser-monkey BM_TIMEOUT=false electron-mocha --interactive --renderer test/**/*Spec.js

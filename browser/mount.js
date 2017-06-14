@@ -1,6 +1,5 @@
 const hyperdom = require('hyperdom')
+const router = require('hyperdom/router')
 const App = require('./browserApp')
-const router = require('hyperdom-router')
 
-router.start()
-hyperdom.append(document.body, new App())
+hyperdom.append(document.body, new App(), {router})
