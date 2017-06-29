@@ -1,4 +1,5 @@
 const fs = require('fs')
+const router = require('hyperdom/router')
 const server = require('../server/serverApp')
 const sqlite3 = require('sqlite3')
 const App = require('../browser/browserApp')
@@ -7,7 +8,7 @@ const reloadButton = require('browser-monkey/lib/reloadButton')
 
 let dbPath = process.env.DB = process.cwd() + '/test/test.db'
 
-async function seedDb() {
+function seedDb () {
   return new Promise((resolve, reject) => {
     fs.existsSync(dbPath) && fs.unlinkSync(dbPath)
 
@@ -25,12 +26,15 @@ async function seedDb() {
 }
 
 describe('todos app', () => {
-  let browser, backend, startUrl, port = 6365
+  let browser
+  let backend
+  let startUrl
+  let port = 6365
 
   beforeEach(async () => {
     await seedDb()
     backend = server.listen(port)
-    browser = mountApp(new App(`http://localhost:${port}`), {url: startUrl})
+    browser = mountApp(new App(`http://localhost:${port}`), {url: startUrl, router})
     browser.set({timeout: process.env.BM_TIMEOUT || 1000})
     reloadButton()
   })

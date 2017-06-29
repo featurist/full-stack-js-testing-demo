@@ -18,8 +18,6 @@ Clone this repositoty and `yarn install`. Then:
 
 - `yarn start` starts the app
 
-- `make test` runs tests in electron/node headlessly
+- `yarn test` runs tests in electron/node headlessly
 
-- `make test-debug` runs tests and opens up browser window
-
-- `make test-vdom` runs the same tests in virtual-dom/node (no browser!)
+- `yarn test-debug` runs tests and opens up browser window

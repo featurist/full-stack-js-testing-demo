@@ -3,11 +3,13 @@
     "postinstall": "electron-rebuild",
     "start": "node server/start.js",
     "dev": "nodemon --exec node server/start.js",
-    "test": "electron-mocha --renderer test/**/*Spec.js"
+    "test": "electron-mocha --renderer test/**/*Spec.js",
+    "test-debug": "DEBUG=error*,browser-monkey BM_TIMEOUT=false electron-mocha --interactive --renderer test/**/*Spec.js"
   },
   "dependencies": {
     "babel-preset-es2015": "*",
     "babelify": "*",
+    "browser-monkey": "^2.7.0",
     "browserify": "*",
     "browserify-middleware": "*",
     "express": "*",
@@ -16,14 +18,17 @@
     "sqlite3": "*"
   },
   "devDependencies": {
-    "browser-monkey": "*",
     "browserify": "*",
     "chai": "*",
     "electron": "*",
     "electron-mocha": "*",
     "electron-rebuild": "*",
     "mocha": "*",
-    "nodemon": "*"
+    "nodemon": "*",
+    "standard": "^10.0.2"
+  },
+  "standard": {
+    "env": [ "mocha" ]
   },
   "name": "bm-demo",
   "version": "1.0.0",

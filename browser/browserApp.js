@@ -8,12 +8,12 @@ const routes = {
 }
 
 module.exports = class App {
-  constructor(serverUrl) {
+  constructor (serverUrl) {
     this.api = httpism.client(serverUrl)
     this.todos = []
   }
 
-  routes() {
+  routes () {
     return [
       routes.home({
         render: () => {
@@ -31,7 +31,7 @@ module.exports = class App {
     ]
   }
 
-  render(content) {
+  renderLayout (content) {
     return h('main', content)
   }
 }

@@ -1,4 +1,9 @@
+let g:ale_linters = {
+      \   'javascript': ['standard'],
+      \}
+
 set conceallevel=0
+
 let g:vigun_commands = [
       \ {
       \   'pattern': 'Spec.js$',

@@ -7,15 +7,15 @@ const app = express()
 app.get('/api/todos', (req, res) => {
   const db = new sqlite3.Database(process.env.DB || process.cwd() + '/app.db')
 
-  db.all('select * from todos', (err, rows) => {
+  db.all('select * from todos', (_, rows) => {
     res.send(rows)
     db.close()
   })
-});
+})
 
 app.get('/bundle.js', browserify('browser/mount.js', {
-  transform: ['babelify'],
-}));
+  transform: ['babelify']
+}))
 
 app.get('*', (req, res) => {
   res.set({'content-type': 'text/html'})
@@ -34,6 +34,6 @@ app.get('*', (req, res) => {
 </html>
     `
   )
-});
+})
 
 module.exports = app
