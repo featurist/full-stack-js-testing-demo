@@ -21,3 +21,6 @@ Clone this repositoty and `yarn install`. Then:
 - `yarn test` runs tests in electron/node headlessly
 
 - `yarn test-debug` runs tests and opens up browser window
+
+## We're Hiring!
+Featurist provides full stack, feature driven development teams. Want to join us? Check out [our career opportunities](https://www.featurist.co.uk/careers/).
