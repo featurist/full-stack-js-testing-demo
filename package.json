@@ -1,39 +1,45 @@
 {
+  "main": "./server/app.js",
   "scripts": {
+    "start": "./scripts/start.sh",
     "postinstall": "electron-rebuild",
-    "start": "node server/start.js",
-    "dev": "nodemon --exec node server/start.js",
-    "test": "electron-mocha --renderer test/**/*Spec.js",
-    "test-debug": "DEBUG=error*,browser-monkey BM_TIMEOUT=false electron-mocha --interactive --renderer test/**/*Spec.js"
+    "dev": "nf start",
+    "test": "electron-mocha --color --renderer ./test/*Spec.js",
+    "lint": "eslint $(git ls-files | grep -E '\\.js$')",
+    "build": "webpack",
+    "heroku-postbuild": "npm run build",
+    "watch-assets": "yarn build --watch"
   },
   "dependencies": {
-    "babel-preset-es2015": "*",
-    "babelify": "*",
-    "browser-monkey": "^2.7.0",
-    "browserify": "*",
-    "browserify-middleware": "*",
-    "express": "*",
-    "httpism": "*",
-    "hyperdom": "*",
-    "sqlite3": "*"
+    "@babel/core": "latest",
+    "@babel/preset-env": "latest",
+    "babel-loader": "latest",
+    "electron-rebuild": "^1.8.4",
+    "express": "latest",
+    "httpism": "^3.19.0",
+    "hyperdom": "0.21.0",
+    "morgan": "latest",
+    "sqlite3": "^4.0.8",
+    "style-loader": "latest",
+    "uglifyjs-webpack-plugin": "latest",
+    "webpack": "latest",
+    "webpack-cli": "latest",
+    "webpack-manifest-plugin": "latest"
   },
   "devDependencies": {
-    "browserify": "*",
-    "chai": "*",
-    "electron": "*",
-    "electron-mocha": "*",
-    "electron-rebuild": "*",
-    "mocha": "*",
-    "nodemon": "*",
-    "standard": "^10.0.2"
+    "browser-monkey": "latest",
+    "chai": "latest",
+    "chokidar": "latest",
+    "electron": "latest",
+    "electron-mocha": "latest",
+    "eslint": "latest",
+    "eslint-plugin-filenames": "latest",
+    "eslint-plugin-hyperdom": "latest",
+    "eslint-plugin-import": "latest",
+    "foreman": "latest",
+    "mocha": "latest",
+    "node-dev": "latest",
+    "ws": "latest"
   },
-  "standard": {
-    "env": [ "mocha" ]
-  },
-  "name": "bm-demo",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "git@github.com:artemave/browser-monkey-example.git",
-  "author": "artemave <artemave@gmail.com>",
-  "license": "MIT"
+  "browserslist": "defaults"
 }

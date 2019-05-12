@@ -1,10 +1,11 @@
 const fs = require('fs')
-const router = require('hyperdom/router')
-const server = require('../server/serverApp')
+const hyperdom = require('hyperdom')
+const {router: createRouter, memory: createMemoryHistory} = require('hyperdom/router')
+const createMonkey = require('browser-monkey/create')
+const createTestDiv = require('browser-monkey/lib/createTestDiv')
 const sqlite3 = require('sqlite3')
-const App = require('../browser/browserApp')
-const mountApp = require('browser-monkey/hyperdom')
-const reloadButton = require('browser-monkey/lib/reloadButton')
+const App = require('../browser/app')
+const createServer = require('../server/app')
 
 let dbPath = process.env.DB = process.cwd() + '/test/test.db'
 
@@ -25,28 +26,38 @@ function seedDb () {
   })
 }
 
+const port = 6365
+
+function navigateTo(path) {
+  const router = createRouter({history: createMemoryHistory()})
+  router.push(path)
+
+  const $testContainer = createTestDiv()
+  hyperdom.append(
+    $testContainer,
+    new App({apiUrl: `http://localhost:${port}`, router}),
+    {router}
+  )
+
+  const browser = createMonkey($testContainer)
+  browser.set({timeout: process.env.BM_TIMEOUT || 1000})
+
+  return browser
+}
+
 describe('todos app', () => {
   let browser
-  let backend
-  let startUrl
-  let port = 6365
+  let server
 
   beforeEach(async () => {
     await seedDb()
-    backend = server.listen(port)
-    browser = mountApp(new App(`http://localhost:${port}`), {url: startUrl, router})
-    browser.set({timeout: process.env.BM_TIMEOUT || 1000})
-    reloadButton()
+    server = createServer().listen(port)
   })
 
-  afterEach(() => {
-    backend.close()
-  })
+  afterEach(() => server.close())
 
   context('when user lands on "/"', () => {
-    before(() => {
-      startUrl = '/'
-    })
+    beforeEach(() => browser = navigateTo('/'))
 
     it('allows user to fetch todos', async () => {
       await browser.find('button').click()
@@ -55,9 +66,7 @@ describe('todos app', () => {
   })
 
   context('when user lands on "/todos"', () => {
-    before(() => {
-      startUrl = '/todos'
-    })
+    beforeEach(() => browser = navigateTo('/todos'))
 
     it('fetches todos automatically', async () => {
       await browser.find('ul li').shouldHave({text: ['one', 'two']})

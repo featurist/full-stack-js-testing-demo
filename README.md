@@ -5,14 +5,12 @@ As a result, it is fast and debuggable.
 
 This is made possible by the following tech:
 
-- [electron-mocha](https://github.com/jprichardson/electron-mocha) runs tests in a browser that's also a node.js
+- [electron-mocha](https://github.com/jprichardson/electron-mocha) runs mocha tests in Electron browser - a browser that's also a Node runtime
 
 - [browser-monkey](https://github.com/featurist/browser-monkey) interacts with web pages and asserts DOM
 
 Usage
 --------
-
-Requires Node 7.6 or higher.
 
 Clone this repositoty and `yarn install`. Then:
 
@@ -20,7 +18,7 @@ Clone this repositoty and `yarn install`. Then:
 
 - `yarn test` runs tests in electron/node headlessly
 
-- `yarn test-debug` runs tests and opens up browser window
+- `yarn test --interactive` runs tests and opens up browser window
 
 ## We're Hiring!
 

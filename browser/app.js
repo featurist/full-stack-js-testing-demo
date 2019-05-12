@@ -1,26 +1,23 @@
 const {html: h} = require('hyperdom')
-const router = require('hyperdom/router')
 const httpism = require('httpism')
 
-const routes = {
-  home: router.route('/'),
-  todos: router.route('/todos')
-}
-
 module.exports = class App {
-  constructor (serverUrl) {
-    this.api = httpism.client(serverUrl)
+  constructor ({router = require('hyperdom/router'), apiUrl}) {
+    this.api = httpism.client(apiUrl)
+    this.router = router
     this.todos = []
   }
 
   routes () {
+    const todosRoute = this.router.route('/todos')
+
     return [
-      routes.home({
+      this.router.route('/')({
         render: () => {
-          return h('button', {onclick: () => routes.todos.push()}, 'Fetch me TODOs')
+          return h('button', {onclick: () => todosRoute.push()}, 'Fetch me TODOs')
         }
       }),
-      routes.todos({
+      todosRoute({
         onload: async () => {
           this.todos = await this.api.get('/api/todos')
         },

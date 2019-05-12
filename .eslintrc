@@ -1,0 +1,42 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:hyperdom/recommended",
+    "plugin:import/errors"
+  ],
+  "plugins": [
+    "filenames",
+    "hyperdom"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true,
+    "serviceworker": true,
+    "es6": true
+  },
+  "rules": {
+    "no-console": ["error", {
+      "allow": ["info", "warn", "error"]
+    }],
+    "filenames/match-exported": [2, "camel"],
+    "import/no-unresolved": [2, {
+      "caseSensitive": true,
+      "commonjs": true
+    }]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".json"
+        ]
+      }
+    }
+  }
+}

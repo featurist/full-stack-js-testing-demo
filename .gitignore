@@ -1,2 +1,4 @@
 node_modules
+browser/dist
 test/test.db
+.DS_Store

@@ -7,7 +7,7 @@ set conceallevel=0
 let g:vigun_commands = [
       \ {
       \   'pattern': 'Spec.js$',
-      \   'normal': 'electron-mocha --renderer',
-      \   'debug': 'DEBUG=error*,browser-monkey BM_TIMEOUT=false electron-mocha --interactive --no-timeouts',
+      \   'normal': './node_modules/.bin/electron-mocha --renderer --color',
+      \   'debug': 'DEBUG=error*,browser-monkey BM_TIMEOUT=false ./node_modules/.bin/electron-mocha --renderer --interactive --no-timeouts --color',
       \ },
       \]
