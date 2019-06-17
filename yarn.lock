@@ -813,8 +813,10 @@ brorand@^1.0.1:
   resolved "https://registry.yarnpkg.com/brorand/-/brorand-1.1.0.tgz#12c25efe40a45e3c323eb8675a0a0ce57b22371f"
   integrity sha1-EsJe/kCkXjwyPrhnWgoM5XsiNx8=
 
-browser-monkey@../vetpost/browser-monkey:
-  version "2.7.2"
+browser-monkey@latest:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/browser-monkey/-/browser-monkey-2.9.0.tgz#7fcbebe8a97e0f40f019ef076fcd2e521b039105"
+  integrity sha512-Cs3OaLAfWvSBKDRXX0HPTl/LMUxt7ycO6knaIOHdPCwrI+wXYR4OCI7nh3CkA1xQ0frXZZw6n85tpIcpHdUAgQ==
   dependencies:
     array.prototype.find "^2.0.3"
     chai "3.5.0"

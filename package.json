@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@babel/register": "^7.4.4",
-    "browser-monkey": "../vetpost/browser-monkey",
+    "browser-monkey": "latest",
     "chai": "latest",
     "chokidar": "latest",
     "electron": "^4",
