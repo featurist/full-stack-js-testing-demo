@@ -1,9 +1,9 @@
-const fs = require('fs')
-const hyperdom = require('hyperdom')
-const {router: createRouter, memory: createMemoryHistory} = require('hyperdom/router')
+const {existsSync, unlinkSync} = require('fs')
+const ReactDOM = require('react-dom')
+const React = require('react')
 const createMonkey = require('browser-monkey/create')
 const createTestDiv = require('browser-monkey/lib/createTestDiv')
-const sqlite3 = require('sqlite3')
+const {Database} = require('sqlite3')
 const App = require('../browser/app')
 const createServer = require('../server/app')
 
@@ -11,14 +11,14 @@ let dbPath = process.env.DB = process.cwd() + '/test/test.db'
 
 function seedDb () {
   return new Promise((resolve, reject) => {
-    fs.existsSync(dbPath) && fs.unlinkSync(dbPath)
+    existsSync(dbPath) && unlinkSync(dbPath)
 
-    const db = new sqlite3.Database(dbPath)
+    const db = new Database(dbPath)
 
-    db.run('create table todos (id integer, title text)', (err) => {
+    db.run('create table todos (id integer, title text, user text)', (err) => {
       if (err) return reject(err)
 
-      db.run("insert into todos values (1, 'one'), (2, 'two')", () => {
+      db.run("insert into todos values (1, 'one', 'Alice'), (2, 'two', 'Alice')", () => {
         db.close()
         resolve()
       })
@@ -28,48 +28,40 @@ function seedDb () {
 
 const port = 6365
 
-function navigateTo(path) {
-  const router = createRouter({history: createMemoryHistory()})
-  router.push(path)
-
-  const $testContainer = createTestDiv()
-  hyperdom.append(
-    $testContainer,
-    new App({apiUrl: `http://localhost:${port}`, router}),
-    {router}
-  )
-
-  const browser = createMonkey($testContainer)
-  browser.set({timeout: process.env.BM_TIMEOUT || 1000})
-
-  return browser
-}
-
 describe('todos app', () => {
-  let browser
+  let page
   let server
 
   beforeEach(async () => {
     await seedDb()
     server = createServer().listen(port)
+
+    const $testContainer = createTestDiv()
+
+    ReactDOM.render(
+      React.createElement(App, {apiUrl: `http://localhost:${port}/`}),
+      $testContainer
+    )
+
+    page = createMonkey($testContainer)
+    page.set({timeout: process.env.BM_TIMEOUT || 1000})
   })
 
   afterEach(() => server.close())
 
-  context('when user lands on "/"', () => {
-    beforeEach(() => browser = navigateTo('/'))
-
-    it('allows user to fetch todos', async () => {
-      await browser.find('button').click()
-      await browser.find('ul li').shouldHave({text: ['one', 'two']})
+  context('user exists', () => {
+    it('shows TODOs', async () => {
+      await page.find('input[name=user]').typeIn('Alice')
+      await page.click('Fetch TODOs')
+      await page.find('ul li').shouldHave({text: ['one', 'two']})
     })
   })
 
-  context('when user lands on "/todos"', () => {
-    beforeEach(() => browser = navigateTo('/todos'))
-
-    it('fetches todos automatically', async () => {
-      await browser.find('ul li').shouldHave({text: ['one', 'two']})
+  context('user does not exist', () => {
+    it('shows a message', async () => {
+      await page.find('input[name=user]').typeIn('Bob')
+      await page.click('Fetch TODOs')
+      await page.shouldHave({text: "Could not find Bob's TODOs"})
     })
   })
 })

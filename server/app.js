@@ -3,6 +3,7 @@ const express = require('express')
 const morgan = require('morgan')
 const loadManifest = require('./loadManifest')
 const sqlite3 = require('sqlite3')
+const LiveReload = require('./liveReload')
 
 function renderIndexHtml () {
   const manifest = loadManifest()
@@ -14,7 +15,7 @@ function renderIndexHtml () {
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>My Hyperdom App</title>
+    <title>TODOs</title>
   </head>
   <body>
     ${scripts.map(url => `<script type="text/javascript" src="/dist/${url}"></script>`).join('\n')}
@@ -27,11 +28,15 @@ module.exports = function () {
   const app = express()
   app.use(morgan('dev'))
 
-  app.get('/api/todos', (req, res) => {
+  app.get('/api/todos/:user', (req, res) => {
     const db = new sqlite3.Database(process.env.DB || process.cwd() + '/app.db')
 
-    db.all('select * from todos', (_, rows) => {
-      res.send(rows)
+    db.all(`SELECT * FROM todos WHERE user = ?`, req.params.user, (_, rows) => {
+      if (rows.length) {
+        res.json(rows)
+      } else {
+        res.status(404).send(`Could not find ${req.params.user}'s TODOs`)
+      }
       db.close()
     })
   })
@@ -54,10 +59,7 @@ if (!module.parent) {
   const app = module.exports()
   const server = http.createServer(app)
 
-  if (process.env.NODE_ENV !== 'production') {
-    const LiveReload = require('./liveReload')
-    new LiveReload({server}).listen()
-  }
+  new LiveReload({server}).listen()
 
   server.listen(port, () => {
     console.info(`listening on http://localhost:${port}`)

@@ -2,40 +2,26 @@
 
 const webpack = require('webpack')
 const ManifestPlugin = require('webpack-manifest-plugin')
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
 const path = require('path')
-
-const mode = process.env.NODE_ENV === 'production'
-  ? 'production'
-  : 'development'
 
 const plugins = [
   new ManifestPlugin(),
   new webpack.EnvironmentPlugin({
-    NODE_ENV: mode,
     DEBUG: false
   }),
 ]
 
-const filename = mode === 'production'
-  ? '[name].[contenthash].bundle.js'
-  : '[name].bundle.js'
-
-const devtool = mode === 'production'
-  ? 'source-map'
-  : 'eval-source-map'
-
 const entry = {
-  app: './browser/index.js',
+  app: './browser/index.jsx',
   liveReload: './browser/liveReload.js'
 }
 
 const webpackConfig = {
-  mode,
-  devtool,
+  mode: 'development',
+  devtool: 'eval-source-map',
   entry,
   output: {
-    filename,
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'browser', 'dist')
   },
   plugins,
@@ -48,18 +34,6 @@ const webpackConfig = {
         test: /\.jsx?$/,
         use: 'babel-loader'
       },
-    ]
-  }
-}
-
-if (mode === 'production') {
-  webpackConfig.optimization = {
-    minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true // set to true if you want JS source maps
-      })
     ]
   }
 }
