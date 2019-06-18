@@ -49,16 +49,18 @@ describe('todos app', () => {
 
   afterEach(() => server.close())
 
-  context('user exists', () => {
-    it('shows TODOs', async () => {
+  describe('user exists', () => {
+    test('it shows TODOs', async () => {
+      console.log('xxxx');
       await page.find('input[name=user]').typeIn('Alice')
       await page.click('Fetch TODOs')
       await page.find('ul li').shouldHave({text: ['one', 'two']})
     })
   })
 
-  context('user does not exist', () => {
-    it('shows a message', async () => {
+  describe('user does not exist', () => {
+    test('it shows a message', async () => {
+      console.log('yyyyy');
       await page.find('input[name=user]').typeIn('Bob')
       await page.click('Fetch TODOs')
       await page.shouldHave({text: "Could not find Bob's TODOs"})

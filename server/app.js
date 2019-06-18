@@ -4,6 +4,7 @@ const morgan = require('morgan')
 const loadManifest = require('./loadManifest')
 const sqlite3 = require('sqlite3')
 const LiveReload = require('./liveReload')
+const debug = require('debug')('server')
 
 function renderIndexHtml () {
   const manifest = loadManifest()
@@ -29,6 +30,7 @@ module.exports = function () {
   app.use(morgan('dev'))
 
   app.get('/api/todos/:user', (req, res) => {
+    debug('fetching todos')
     const db = new sqlite3.Database(process.env.DB || process.cwd() + '/app.db')
 
     db.all(`SELECT * FROM todos WHERE user = ?`, req.params.user, (_, rows) => {

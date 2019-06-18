@@ -1,4 +1,5 @@
 const React = require('react')
+const debug = require('debug')('browser')
 
 module.exports = class App extends React.Component {
   constructor(props) {
@@ -26,6 +27,7 @@ module.exports = class App extends React.Component {
   }
 
   render () {
+    debug('rendering')
     if (this.state.error) {
       return <h3>{this.state.error}</h3>
     }
