@@ -1,6 +1,5 @@
 const http = require('http')
 const express = require('express')
-const morgan = require('morgan')
 const loadManifest = require('./loadManifest')
 const sqlite3 = require('sqlite3')
 const LiveReload = require('./liveReload')
@@ -18,6 +17,7 @@ function renderIndexHtml () {
     <title>TODOs</title>
   </head>
   <body>
+    <main></main>
     ${scripts.map(url => `<script type="text/javascript" src="/dist/${url}"></script>`).join('\n')}
   </body>
 </html>
@@ -26,7 +26,6 @@ function renderIndexHtml () {
 
 module.exports = function () {
   const app = express()
-  app.use(morgan('dev'))
 
   app.get('/api/todos/:user', (req, res) => {
     const db = new sqlite3.Database(process.env.DB || process.cwd() + '/app.db')

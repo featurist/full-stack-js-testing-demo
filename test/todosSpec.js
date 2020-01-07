@@ -1,11 +1,11 @@
-const {existsSync, unlinkSync} = require('fs')
-const ReactDOM = require('react-dom')
-const React = require('react')
-const createMonkey = require('browser-monkey/create')
-const createTestDiv = require('browser-monkey/lib/createTestDiv')
-const {Database} = require('sqlite3')
-const App = require('../browser/app')
-const createServer = require('../server/app')
+import {existsSync, unlinkSync} from 'fs'
+import ReactDOM from 'react-dom'
+import React from 'react'
+import createMonkey from 'browser-monkey/create'
+import createTestDiv from 'browser-monkey/lib/createTestDiv'
+import {Database} from 'sqlite3'
+import createServer from '../server/app'
+import App from '../browser/app'
 
 let dbPath = process.env.DB = process.cwd() + '/test/test.db'
 
@@ -58,7 +58,7 @@ describe('todos app', () => {
   })
 
   context('user does not exist', () => {
-    it('shows a message', async () => {
+    it('shows a "not found" message', async () => {
       await page.find('input[name=user]').typeIn('Bob')
       await page.click('Fetch TODOs')
       await page.shouldHave({text: "Could not find Bob's TODOs"})

@@ -1,16 +1,23 @@
-const React = require('react')
+import React from 'react'
+import PropTypes from 'prop-types'
 
-module.exports = class App extends React.Component {
+export default class App extends React.Component {
+  static get propTypes() {
+    return {
+      apiUrl: PropTypes.string,
+    }
+  }
+
   constructor(props) {
-    super(props);
-    this.state = {user: ''};
+    super(props)
+    this.state = {user: ''}
 
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.fetchTodos = this.fetchTodos.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this)
+    this.fetchTodos = this.fetchTodos.bind(this)
   }
 
   handleNameChange(event) {
-    this.setState({user: event.target.value});
+    this.setState({user: event.target.value})
   }
 
   async fetchTodos(event) {
@@ -33,7 +40,7 @@ module.exports = class App extends React.Component {
     return this.state.todos
       ?
         <>
-          <h1>{this.state.user}'s TODOs</h1>
+          <h1>{this.state.user}&apos;s TODOs</h1>
           <ul>
             {this.state.todos.map((todo, n) => <li key={n}>{todo.title}</li>)}
           </ul>
