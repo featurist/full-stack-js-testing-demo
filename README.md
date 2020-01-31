@@ -20,6 +20,12 @@ Clone this repositoty and `yarn install`. Then:
 
 - `yarn test --interactive` runs tests and opens up browser window
 
+For comparison, there is a selenium webdriver version of the same tests. Can be run like this:
+
+- `yarn test-wd` - headless
+
+- `GUI=1 yarn test-wd` - with browser window
+
 ## We're Hiring!
 
 Join our remote team and help us build amazing software. Check out [our career opportunities](https://www.featurist.co.uk/careers/).

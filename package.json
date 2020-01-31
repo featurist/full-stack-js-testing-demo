@@ -4,7 +4,8 @@
     "start": "./scripts/start.sh",
     "postinstall": "electron-rebuild",
     "dev": "nf start",
-    "test": "electron-mocha -r @babel/register --no-timeout --color --renderer ./test/*Spec.js",
+    "test": "electron-mocha -r @babel/register --no-timeout --color --renderer ./test/todosSpec.js",
+    "test-wd": "mocha ./test/todosSpecWd.js",
     "lint": "eslint $(git ls-files | grep -E '\\.js$')",
     "build": "webpack",
     "heroku-postbuild": "npm run build",
@@ -31,12 +32,14 @@
     "browser-monkey": "latest",
     "chai": "latest",
     "chokidar": "latest",
+    "chromedriver": "^79.0.2",
     "electron": "latest",
     "electron-mocha": "latest",
     "eslint": "latest",
     "foreman": "latest",
-    "mocha": "latest",
+    "mocha": "^7.0.1",
     "node-dev": "latest",
+    "selenium-webdriver": "^4.0.0-alpha.5",
     "ws": "latest"
   }
 }
