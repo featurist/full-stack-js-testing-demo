@@ -724,6 +724,11 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
   integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
 
+barecolor@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/barecolor/-/barecolor-1.0.1.tgz#1bbbbfc41cedecf74e23fb7d9d054cd8763d92cc"
+  integrity sha512-ncJ680U+r1CGBt73L3O6V9GIAPy3hbDmWODEQajwEnDmmzeStvc4UYhapUSxUpS76+MHxyRihzZfwhyl122Zdw==
+
 base64-js@^1.0.2:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.3.1.tgz#58ece8cb75dd07e71ed08c736abc5fac4dbf8df1"
@@ -1652,6 +1657,13 @@ domain-browser@^1.1.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/domain-browser/-/domain-browser-1.2.0.tgz#3d31f50191a6749dd1375a7f522e823d42e54eda"
   integrity sha512-jnjyiM6eRyZl2H+W8Q/zLMA481hzi0eszAaBUzIVnmYVDBbnLxVNnfu1HgEBvCbL+71FrxMl3E6lpKH7Ge3OXA==
+
+donc@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/donc/-/donc-1.0.0.tgz#6267a206cc752e2b5b25bc0b67507eda98607f40"
+  integrity sha512-E6K3qbYingdCpcD6/YiDO9upvopRxAfbTLgOkLRbMEuaMUH4w0WJor3Ag59AxG+7nANNkQlMlM5KIO9zTDtQRg==
+  dependencies:
+    barecolor "^1.0.1"
 
 duplexer3@^0.1.4:
   version "0.1.4"

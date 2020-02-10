@@ -4,6 +4,7 @@ const chrome = require('selenium-webdriver/chrome')
 const {Database} = require('sqlite3')
 const createServer = require('../server/app')
 const assert = require('assert')
+const {test, afterSuite, beforeSuite} = require('donc')
 
 let dbPath = process.env.DB = process.cwd() + '/test/test.db'
 
@@ -26,42 +27,43 @@ function seedDb () {
 
 const port = 6365
 
-describe('todos app', () => {
-  let driver, server
+let driver, server
 
-  before(async () => {
-    let builder = new Builder().forBrowser('chrome')
-    if (!process.env.GUI) {
-      builder = builder.setChromeOptions(new chrome.Options().headless())
-    }
-    driver = await builder.build()
+beforeSuite(async () => {
+  let builder = new Builder().forBrowser('chrome')
+  if (!process.env.GUI) {
+    builder = builder.setChromeOptions(new chrome.Options().headless())
+  }
+  driver = await builder.build()
+})
+
+afterSuite(() => driver.quit())
+
+async function setup(fn) {
+  await seedDb()
+  server = createServer().listen(port)
+  await driver.get('http://localhost:6365')
+  try {
+    await fn()
+  } finally {
+    server.close()
+  }
+}
+
+test('shows TODOs', async () => {
+  await setup(async () => {
+    await driver.findElement(By.name('user')).sendKeys('Alice', Key.RETURN)
+    const todos = await Promise.all(
+      (await driver.findElements(By.css('ul li'))).map(e => e.getText())
+    )
+    assert.deepEqual(todos, ['one', 'two'])
   })
+})
 
-  after(() => driver.quit())
-
-  beforeEach(async () => {
-    await seedDb()
-    server = createServer().listen(port)
-    await driver.get('http://localhost:6365')
-  })
-
-  afterEach(() => server.close())
-
-  context('user exists', () => {
-    it('shows TODOs', async () => {
-      await driver.findElement(By.name('user')).sendKeys('Alice', Key.RETURN)
-      const todos = await Promise.all(
-        (await driver.findElements(By.css('ul li'))).map(e => e.getText())
-      )
-      assert.deepEqual(todos, ['one', 'two'])
-    })
-  })
-
-  context('user does not exist', () => {
-    it('shows a "not found" message', async () => {
-      await driver.findElement(By.name('user')).sendKeys('Bob', Key.RETURN)
-      const alert = await (await driver.findElement(By.css('h3'))).getText()
-      assert.equal(alert, "Could not find Bob's TODOs")
-    })
+test('shows a "not found" message when user does not exist', async () => {
+  await setup(async () => {
+    await driver.findElement(By.name('user')).sendKeys('Bob', Key.RETURN)
+    const alert = await (await driver.findElement(By.css('h3'))).getText()
+    assert.equal(alert, "Could not find Bob's TODOs")
   })
 })
